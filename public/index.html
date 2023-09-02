@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
+        integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .show {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body style="padding: 40px;">
+
+
+    <div class="flex space-x-4" style="gap:20px">
+        <!-- First Div -->
+        <div class="bg-dark p-6 shadow rounded-lg" style="flex-basis: 20%;">
+            <h2 class="text-lg font-semibold mb-4">Online Users</h2>
+            <ul class="divide-y divide-gray-700 max-h-96 overflow-y-auto" id="userList">
+                <!-- Dynamically generated user list items go here -->
+            </ul>
+            <br />
+            <div class="form-control w-full max-w-xs">
+                <input type="text" id="selectUsername" placeholder="What is your name?" class="input input-bordered w-full max-w-xs" onblur="renameUser(this)" />
+            </div>
+        </div>
+
+        <!-- Second Div -->
+        <div class="overflow-x-auto" style="flex-grow: 1;">
+            <caption>List of available rooms</caption>
+            <br /><br />
+            <table class="table">
+                <!-- head -->
+                <thead>
+                    <tr>
+                        <th>Room ID</th>
+                        <th>Players</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="roomsTableBody">
+
+                </tbody>
+            </table>
+            <br />
+            <button class="btn btn-sm btn-primary show" id="findAMatchButton" onclick="findAMatch()">Find a
+                match</button>
+            <button class="btn btn-sm btn-accent hide" id="cancelSearchButton" onclick="cancelSearch()">Cancel
+                search</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="helperFunctions.js"></script>
+    <script src="client.js"></script>
+</body>
+
+</html>
