@@ -22,7 +22,7 @@ function socketHandler(server) {
                         socket.join(id);
                         rooms.set(id, +players + 1);
                         let username = getUsernameFromSocketID(socket.id, users);
-                        console.log(`${username} has joined the room ${id}`);
+                        console.log(`${username} has joined the room ${id}`.green);
                         io.emit("room:list", Array.from(rooms.entries()));
                         return;
                     }
@@ -51,7 +51,7 @@ function socketHandler(server) {
             users.delete(socket.id);
             io.emit("user:list", Array.from(users.entries()));
             console.log(
-                `${username} have disconnected and is removed from all rooms`
+                `${username} have disconnected and is removed from all rooms`.red
             );
         });
     });
@@ -61,7 +61,7 @@ function createAndJoinNewRoom(socket, io, rooms, roomName, users) {
     rooms.set(roomName, 1);
     socket.join(roomName);
     let username = getUsernameFromSocketID(socket.id, users);
-    console.log(`${username} has created and joined the room ${roomName}`);
+    console.log(`${username} has created and joined the room ${roomName}`.green);
     io.emit("room:list", Array.from(rooms.entries()));
     return rooms;
 }

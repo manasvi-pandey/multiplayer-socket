@@ -1,4 +1,5 @@
 require("dotenv").config();
+const colors = require("colors");
 const path = require("path");
 const express = require("express");
 const socketHandler = require("./socketHandler");
@@ -17,6 +18,6 @@ socketHandler(server);
 //     res.sendFile(__dirname + "/public/index.html");
 // });
 
-server.listen(PORT, '192.168.1.165', () => {
-  console.log(`Server is now running on PORT: ${PORT}`);
+server.listen(PORT, () => {
+  console.log(`Server is now running on PORT: ${PORT}`.blue);
 });
